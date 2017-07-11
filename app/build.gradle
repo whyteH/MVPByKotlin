@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'me.tatarka.retrolambda'
 
+def appId = rootProject.ext.android.applicationId
 def verCode = rootProject.ext.android.versionCode
 def verName = rootProject.ext.android.versionName
 
