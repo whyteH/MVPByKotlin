@@ -19,7 +19,7 @@ class SubscriberCallBack<T> : Subscriber<T> {
 
     }
 
-    override fun onSubscribe(s: Subscription?) {
+    override fun onSubscribe(s: Subscription) {
 
     }
 

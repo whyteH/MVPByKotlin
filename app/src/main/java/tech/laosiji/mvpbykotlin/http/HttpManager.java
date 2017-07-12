@@ -1,14 +1,19 @@
 package tech.laosiji.mvpbykotlin.http;
 
+import android.support.annotation.NonNull;
+
+import org.reactivestreams.Subscriber;
+
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Flowable;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.subscriptions.CompositeSubscription;
 import tech.laosiji.mvpbykotlin.BuildConfig;
+import tech.laosiji.mvpbykotlin.bean.base.BaseResult;
 import tech.laosiji.mvpbykotlin.utils.LogUtil;
 
 /**
@@ -20,7 +25,7 @@ public final class HttpManager {
     private static final int CACHE_STALE_LONG = 60 * 60 * 24 * 7;
     private static final long cacheMaxSize = 10 * 1024 * 1024;
     private volatile static HttpManager INSTANCE;
-    private CompositeSubscription mCompositeSubscription;
+//    private CompositeSubscription mCompositeSubscription;
 
     private HttpManager() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -41,12 +46,13 @@ public final class HttpManager {
         Retrofit retrofit = new Retrofit.Builder()
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl("")
                 .build();
 
     }
-//
+
+    //
 //    /**
 //     * 云端响应头拦截器，用来配置缓存策略
 //     * Dangerous interceptor that rewrites the server's cache-control header.
@@ -118,16 +124,16 @@ public final class HttpManager {
 //    /**
 //     * 处理http请求
 //     */
-//    public <T> void doHttp(@NonNull Observable<BaseResult<T>> observable, @NonNull Subscriber<BaseResult<T>> subscriber) {
+    public <T> void doHttp(@NonNull Flowable<BaseResult<T>> flowable, @NonNull Subscriber<BaseResult<T>> subscriber) {
 //        if (mCompositeSubscription == null) {
 //            mCompositeSubscription = new CompositeSubscription();
 //        }
-//        mCompositeSubscription.add(observable
+//        mCompositeSubscription.add(flowable
 //                .subscribeOn(Schedulers.newThread())//子线程访问网络
 ////                .map(new HttpResultFunc<>())
-//                .observeOn(AndroidSchedulers.mainThread())//回调回主线程
+//                .observeOn(Schedulers.single())//回调回主线程
 //                .subscribe(subscriber));
-//    }
+    }
 //
 //    /**
 //     * 下载文件
