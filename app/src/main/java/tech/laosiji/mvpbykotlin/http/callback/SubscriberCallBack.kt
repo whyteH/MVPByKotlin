@@ -1,12 +1,12 @@
 package tech.laosiji.mvpbykotlin.http.callback
 
-import org.reactivestreams.Subscriber
-import org.reactivestreams.Subscription
+import io.reactivex.subscribers.DefaultSubscriber
 
 /**
  * Created by whyte on 2017/7/10.
  */
-class SubscriberCallBack<T> : Subscriber<T> {
+class SubscriberCallBack<T> : DefaultSubscriber<T>() {
+
     override fun onError(t: Throwable?) {
 
     }
@@ -18,9 +18,4 @@ class SubscriberCallBack<T> : Subscriber<T> {
     override fun onNext(t: T) {
 
     }
-
-    override fun onSubscribe(s: Subscription) {
-
-    }
-
 }
