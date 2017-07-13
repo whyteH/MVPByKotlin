@@ -7,7 +7,7 @@ import tech.laosiji.mvpbykotlin.http.HttpManager
 /**
  * Created by whyte on 2016/7/19 0019.
  */
-class BasePresenter<V>(val Context: Context, var mvpView: V?, val httpManager: HttpManager) : Presenter {
+open class BasePresenter<V>(val Context: Context, var mvpView: V?) : Presenter {
 
     init {
 
