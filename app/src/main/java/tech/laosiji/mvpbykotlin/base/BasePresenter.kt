@@ -1,13 +1,12 @@
 package tech.laosiji.mvpbykotlin.base
 
 import android.content.Context
-import tech.laosiji.mvpbykotlin.http.HttpManager
 
 
 /**
  * Created by whyte on 2016/7/19 0019.
  */
-open class BasePresenter<V>(val Context: Context, var mvpView: V?) : Presenter {
+open class BasePresenter<V>(val Context: Context, var mvpView: V) : Presenter {
 
     init {
 
@@ -21,8 +20,7 @@ open class BasePresenter<V>(val Context: Context, var mvpView: V?) : Presenter {
     //    }
 
     override fun onDetachView() {
-        if (mvpView != null)
-            this.mvpView = null
+
     }
 
     override fun onUnSubscribe() {

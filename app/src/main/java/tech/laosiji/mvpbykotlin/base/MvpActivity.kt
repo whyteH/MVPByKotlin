@@ -9,11 +9,11 @@ import android.support.v7.app.AppCompatActivity
  */
 abstract class MvpActivity<P : Presenter> : AppCompatActivity() {
 
-    protected lateinit var mvpPresenter: P
+    lateinit var mvpPresenter: P
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         mvpPresenter = createPresenter()
-        super.onCreate(savedInstanceState, persistentState)
+        super.onCreate(savedInstanceState)
     }
 
     abstract fun createPresenter(): P

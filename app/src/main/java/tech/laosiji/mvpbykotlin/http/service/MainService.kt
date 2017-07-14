@@ -2,7 +2,7 @@ package tech.laosiji.mvpbykotlin.http.service
 
 import io.reactivex.Flowable
 import retrofit2.http.GET
-import tech.laosiji.mvpbykotlin.bean.base.MainBean
+import tech.laosiji.mvpbykotlin.bean.MainBean
 import tech.laosiji.mvpbykotlin.http.url.latest
 
 /**

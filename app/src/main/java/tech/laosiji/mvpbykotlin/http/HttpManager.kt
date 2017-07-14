@@ -21,12 +21,9 @@ import tech.laosiji.mvpbykotlin.utils.LogUtil
  * http交互处理类
  * Created by whyte on 2016/7/18 0018.
  */
-class HttpManager
-//    private CompositeSubscription mCompositeSubscription;
+object HttpManager {
 
-private constructor() {
-
-
+    var mainService: MainService
 
     init {
         val DEFAULT_TIMEOUT = 10
@@ -51,31 +48,27 @@ private constructor() {
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("")
+                .baseUrl("https://news-at.zhihu.com")
                 .build()
-        mainService = retrofit.create(MainService::class.java!!)
 
+        mainService = retrofit.create(MainService::class.java)
     }
 
-    companion object {
 
-        open lateinit var mainService: MainService
-        /**
-         * 处理http请求
-         */
-        fun <T> doHttp(flowAble: Flowable<T>, subscriber: Subscriber<T>) {
-            //        if (mCompositeSubscription == null) {
-            //            mCompositeSubscription = new CompositeSubscription();
-            //        }
-            flowAble
-                    .subscribeOn(Schedulers.newThread())//子线程访问网络
-                    //                .map(new HttpResultFunc<>())
-                    .observeOn(AndroidSchedulers.mainThread())//回调回主线程
-                    .subscribe(subscriber)
-        }
-
-
+    /**
+     * 处理http请求
+     */
+    fun <T> doHttp(flowAble: Flowable<T>, subscriber: Subscriber<T>) {
+        //        if (mCompositeSubscription == null) {
+        //            mCompositeSubscription = new CompositeSubscription();
+        //        }
+        flowAble
+                .subscribeOn(Schedulers.newThread())//子线程访问网络
+                //                .map(new HttpResultFunc<>())
+                .observeOn(AndroidSchedulers.mainThread())//回调回主线程
+                .subscribe(subscriber)
     }
+
     //
     //    /**
     //     * 云端响应头拦截器，用来配置缓存策略

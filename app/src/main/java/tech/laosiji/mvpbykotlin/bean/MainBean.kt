@@ -1,4 +1,4 @@
-package tech.laosiji.mvpbykotlin.bean.base
+package tech.laosiji.mvpbykotlin.bean
 
 /**
  * Created by whyte on 2017/7/13.
