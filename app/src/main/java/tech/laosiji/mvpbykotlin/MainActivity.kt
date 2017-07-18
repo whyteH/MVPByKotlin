@@ -28,7 +28,7 @@ class MainActivity : MvpActivity<MainPresenter>(), MainContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mvpPresenter.getLatest()
+        mvpPresenter.getList()
 
 //        val defaultSub = object : DisposableSubscriber<String>() {
 //            override fun onNext(s: String) {

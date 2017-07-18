@@ -1,21 +1,14 @@
 package tech.laosiji.mvpbykotlin.http
 
-import org.reactivestreams.Subscriber
-
-import java.util.concurrent.TimeUnit
-
-import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import tech.laosiji.mvpbykotlin.BuildConfig
-import tech.laosiji.mvpbykotlin.bean.base.BaseResult
 import tech.laosiji.mvpbykotlin.http.service.MainService
 import tech.laosiji.mvpbykotlin.utils.LogUtil
+import java.util.concurrent.TimeUnit
 
 /**
  * http交互处理类
@@ -48,26 +41,23 @@ object HttpManager {
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("https://news-at.zhihu.com")
+                .baseUrl("http://gank.io/api/")
                 .build()
 
         mainService = retrofit.create(MainService::class.java)
     }
 
 
-    /**
-     * 处理http请求
-     */
-    fun <T> doHttp(flowAble: Flowable<T>, subscriber: Subscriber<T>) {
-        //        if (mCompositeSubscription == null) {
-        //            mCompositeSubscription = new CompositeSubscription();
-        //        }
-        flowAble
-                .subscribeOn(Schedulers.newThread())//子线程访问网络
-                //                .map(new HttpResultFunc<>())
-                .observeOn(AndroidSchedulers.mainThread())//回调回主线程
-                .subscribe(subscriber)
-    }
+//    /**
+//     * 处理http请求
+//     */
+//    fun  doHttp(flowAble: Flowable, subscriber: Subscriber) {
+//        flowAble
+//                .subscribeOn(Schedulers.newThread())//子线程访问网络
+//                //                .map(new HttpResultFunc<>())
+//                .observeOn(AndroidSchedulers.mainThread())//回调回主线程
+//                .subscribe(subscriber)
+//    }
 
     //
     //    /**
