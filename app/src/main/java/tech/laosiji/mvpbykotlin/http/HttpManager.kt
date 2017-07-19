@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import tech.laosiji.mvpbykotlin.BuildConfig
-import tech.laosiji.mvpbykotlin.http.service.MainService
+import tech.laosiji.mvpbykotlin.http.service.ApiService
 import tech.laosiji.mvpbykotlin.utils.LogUtil
 import java.util.concurrent.TimeUnit
 
@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
  */
 object HttpManager {
 
-    var mainService: MainService
+    var apiService: ApiService
 
     init {
         val DEFAULT_TIMEOUT = 10
@@ -31,8 +31,6 @@ object HttpManager {
         }
 
         builder.retryOnConnectionFailure(true)
-                //                .addNetworkInterceptor(mReceivedCookiesInterceptor)
-                //                .addNetworkInterceptor(mAddCookiesInterceptor)
                 .connectTimeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
                 .readTimeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
                 .writeTimeout(DEFAULT_TIMEOUT.toLong(), TimeUnit.SECONDS)
@@ -41,10 +39,10 @@ object HttpManager {
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("http://gank.io/api/")
+                .baseUrl("https://news-at.zhihu.com/api/4/")
                 .build()
 
-        mainService = retrofit.create(MainService::class.java)
+        apiService = retrofit.create(ApiService::class.java)
     }
 
 
