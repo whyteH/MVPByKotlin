@@ -29,24 +29,6 @@ class MainActivity : MvpActivity<MainPresenter>(), MainContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mvpPresenter.getList()
-
-//        val defaultSub = object : DisposableSubscriber<String>() {
-//            override fun onNext(s: String) {
-//                println(s)
-//            }
-//
-//            override fun onError(t: Throwable) {
-//
-//            }
-//
-//            override fun onComplete() {
-//                println("Done")
-//            }
-//        }
-//        Flowable.just("hello world")
-//                .subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(defaultSub)
     }
 
 }

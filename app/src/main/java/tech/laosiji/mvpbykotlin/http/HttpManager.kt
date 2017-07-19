@@ -21,7 +21,7 @@ object HttpManager {
     init {
         val DEFAULT_TIMEOUT = 10
         val CACHE_STALE_LONG = 60 * 60 * 24 * 7
-        val cacheMaxSize = (10 * 1024 * 1024).toLong()
+        val cacheMaxSize = 10 * 1024 * 1024
         val builder = OkHttpClient.Builder()
         if (BuildConfig.DEBUG) {
             val interceptor = HttpLoggingInterceptor { message -> LogUtil.i("okHttp", message) }
